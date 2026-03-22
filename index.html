@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAMES Game Online — Free Love Calculator | Love Games</title>
+<meta name="description" content="Play the classic FLAMES love game online for free. Enter two names and watch step-by-step as the letters reveal if you're Friends, Lovers, Affection, Marriage, Tension, or BFFs.">
+<meta name="keywords" content="FLAMES game, love calculator, FLAMES calculator, relationship game, love test, compatibility test">
+<link rel="canonical" href="https://flames.football-panda.workers.dev">
+
+<!-- Open Graph -->
+<meta property="og:title" content="FLAMES Game — What do the letters say about you two?">
+<meta property="og:description" content="Type two names and watch the FLAMES algorithm decide your destiny — step by step. Free, instant, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flames.football-panda.workers.dev">
+<meta property="og:image" content="https://flames.football-panda.workers.dev/flames-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FLAMES Game — Free Love Calculator">
+<meta name="twitter:description" content="Type two names. Watch the letters decide your fate.">
+<meta name="twitter:image" content="https://flames.football-panda.workers.dev/flames-og.png">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"FLAMES Game","description":"Classic FLAMES love calculator game — enter two names and discover your relationship destiny step by step.","url":"https://flames.football-panda.workers.dev","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en"}
+</script>
+
+<!-- Fonts: only load default combo immediately, rest on demand -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Gamja+Flower&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#141414;--bg2:#1f1f1f;--card:#1c1c1c;
+  --accent:#d4a853;--accent2:#c49740;--accentG:rgba(212,168,83,.18);--accentS:rgba(212,168,83,.06);
+  --ink:#e8e0d4;--ink2:#b0a48e;--ink3:#807060;
+  --partner:#e8446d;--partnerS:rgba(232,68,109,.08);
+  --ok:#d4a853;
+  --sh:rgba(0,0,0,.4);--sh2:rgba(0,0,0,.2);--brd:rgba(255,255,255,.06);
+  --gr:linear-gradient(135deg,var(--accent),var(--accent2));
+  --fd:'Syne',sans-serif;--fh:'Gamja Flower',cursive;--fb:'Quicksand',sans-serif;
+}
+
+[data-theme="rose"]{--bg:#fdf6f0;--bg2:#f5ebe3;--card:#fff;--accent:#e8446d;--accent2:#c93d6b;--accentG:rgba(232,68,109,.22);--accentS:rgba(232,68,109,.07);--ink:#2a1f2d;--ink2:#5a4a5e;--ink3:#8a7a8e;--partner:#d4a853;--partnerS:rgba(212,168,83,.1);--ok:#4caf7d;--sh:rgba(42,31,45,.06);--sh2:rgba(42,31,45,.03);--brd:rgba(42,31,45,.07)}
+[data-theme="peach"]{--bg:#fff5f0;--bg2:#ffe8db;--card:#fff;--accent:#e07a5f;--accent2:#c96a50;--accentG:rgba(224,122,95,.2);--accentS:rgba(224,122,95,.06);--ink:#3d2c2c;--ink2:#7a5f5f;--ink3:#9a8585;--partner:#81b29a;--partnerS:rgba(129,178,154,.08);--ok:#81b29a;--sh:rgba(61,44,44,.06);--sh2:rgba(61,44,44,.03);--brd:rgba(61,44,44,.07)}
+[data-theme="midnight"]{--bg:#0f0e17;--bg2:#1a1829;--card:#1e1c2e;--accent:#ff6b8a;--accent2:#ff4775;--accentG:rgba(255,107,138,.18);--accentS:rgba(255,107,138,.07);--ink:#f0e6ff;--ink2:#c0b0e0;--ink3:#8878a8;--partner:#ffd166;--partnerS:rgba(255,209,102,.08);--ok:#6bffb8;--sh:rgba(0,0,0,.3);--sh2:rgba(0,0,0,.15);--brd:rgba(255,255,255,.07)}
+
+[data-fonts="modern"]{--fd:'Bricolage Grotesque',sans-serif;--fh:'Caveat',cursive;--fb:'Outfit',sans-serif}
+[data-fonts="elegant"]{--fd:'Cormorant Garamond',serif;--fh:'Satisfy',cursive;--fb:'Libre Baskerville',serif}
+[data-fonts="playful"]{--fd:'Syne',sans-serif;--fh:'Gamja Flower',cursive;--fb:'Quicksand',sans-serif}
+[data-fonts="retro"]{--fd:'Josefin Sans',sans-serif;--fh:'Caveat',cursive;--fb:'Josefin Sans',sans-serif}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;transition:background .5s,color .4s}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;will-change:transform}
+
+.bgd{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bl{position:absolute;border-radius:50%;filter:blur(80px);opacity:.08;animation:dr 24s ease-in-out infinite alternate}
+.bl:nth-child(1){width:240px;height:240px;background:var(--accent);top:-25px;right:-45px}
+.bl:nth-child(2){width:190px;height:190px;background:var(--partner);bottom:12%;left:-35px;animation-delay:-9s}
+@keyframes dr{0%{transform:translate(0,0) scale(1)}50%{transform:translate(18px,-12px) scale(1.05)}100%{transform:translate(-10px,10px) scale(.96)}}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:9998;display:none}
+
+/* ═══ TOP BAR ═══ */
+.tb{position:sticky;top:0;z-index:100;background:var(--card);border-bottom:1px solid var(--brd);padding:.4rem 1rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(14px);transition:background .4s}
+.tb-brand{font-family:var(--fd);font-weight:800;font-size:.82rem;color:var(--ink);letter-spacing:-.01em}
+.tb-brand span{color:var(--accent)}
+.tb-r{display:flex;gap:.35rem}
+.ib{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--brd);background:transparent;cursor:pointer;font-size:.78rem;display:flex;align-items:center;justify-content:center;transition:all .25s;color:var(--ink2)}
+.ib:hover{border-color:var(--accent);color:var(--accent)}
+.ib.on{background:var(--accentS);border-color:var(--accent)}
+
+.tray{position:fixed;top:0;right:0;width:270px;height:100vh;height:100dvh;background:var(--card);border-left:1px solid var(--brd);z-index:200;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);padding:1.4rem;overflow-y:auto;box-shadow:-4px 0 20px var(--sh)}
+.tray.open{transform:translateX(0)}
+.tov{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;opacity:0;pointer-events:none;transition:opacity .3s}
+.tov.open{opacity:1;pointer-events:all}
+.tcl{position:absolute;top:.7rem;right:.7rem;width:26px;height:26px;border:none;background:var(--bg2);border-radius:50%;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;color:var(--ink2);transition:all .2s}
+.tcl:hover{background:var(--accentS);color:var(--accent)}
+.tray h3{font-family:var(--fd);font-size:.95rem;font-weight:700;margin-bottom:.7rem;color:var(--ink)}
+.ts{margin-bottom:1.2rem}
+.tl{font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.11em;color:var(--ink3);margin-bottom:.4rem}
+.tg{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+.tc{padding:.5rem;border-radius:9px;border:2px solid var(--brd);cursor:pointer;transition:all .25s;text-align:center}
+.tc:hover{border-color:var(--ink3)}
+.tc.on{border-color:var(--accent);background:var(--accentS)}
+.tcs{width:100%;height:22px;border-radius:5px;margin-bottom:.25rem}
+.tcn{font-size:.55rem;font-weight:600;color:var(--ink2)}
+.fg{display:flex;flex-wrap:wrap;gap:.3rem}
+.fp{padding:.25rem .6rem;border-radius:50px;border:1.5px solid var(--brd);background:transparent;font-size:.58rem;font-weight:500;color:var(--ink2);cursor:pointer;transition:all .25s;font-family:var(--fb)}
+.fp:hover{border-color:var(--accent);color:var(--accent)}
+.fp.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ═══ MAIN ═══ */
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:1.4rem 1.3rem 3rem}
+.hdr{text-align:center;margin-bottom:1.2rem;animation:fd .6s ease-out}
+@keyframes fd{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.hdr h1{font-family:var(--fd);font-size:2.5rem;font-weight:800;line-height:1;color:var(--ink);letter-spacing:-.02em}
+.hdr h1 .sc{display:block;font-family:var(--fh);font-size:2.3rem;font-weight:400;color:var(--accent);margin-top:-.02rem}
+.hdr p{color:var(--ink2);font-size:.8rem;font-weight:300;line-height:1.5;max-width:330px;margin:.45rem auto 0}
+.wl{display:inline-block;margin-top:.25rem;font-size:.65rem;color:var(--accent);text-decoration:none;font-weight:500;cursor:pointer;transition:opacity .2s}
+.wl:hover{opacity:.7}
+.lb{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease,margin .3s ease;background:var(--card);border-radius:12px;box-shadow:0 3px 16px var(--sh);border:1px solid var(--brd);text-align:left;margin-top:0;padding:0 .8rem}
+.lb.show{max-height:220px;padding:.8rem;margin-top:.4rem}
+.lr{display:flex;align-items:center;gap:.45rem;padding:.22rem 0}
+.ll{font-family:var(--fd);font-size:1rem;font-weight:800;color:var(--accent);width:18px}
+.lw{font-size:.72rem;color:var(--ink2);font-weight:400}
+
+.inp{animation:fu .6s ease-out .08s both}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.cd{background:var(--card);border-radius:16px;padding:1.3rem;box-shadow:0 2px 10px var(--sh);border:1px solid var(--brd);transition:background .4s}
+.fl{display:block;font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:.3rem}
+.fi{width:100%;padding:.75rem .9rem;border:2px solid var(--bg2);border-radius:11px;font-family:var(--fb);font-size:.92rem;color:var(--ink);background:var(--bg);transition:all .3s;outline:none}
+.fi:focus{border-color:var(--accent);background:var(--card);box-shadow:0 0 0 3px var(--accentG)}
+.fi::placeholder{color:var(--ink3);font-weight:300}
+.fi.err{border-color:var(--partner);box-shadow:0 0 0 3px var(--partnerS)}
+.dh{text-align:center;margin:.4rem 0;font-size:1rem;color:var(--accent);opacity:.22;animation:hp 2.2s ease-in-out infinite}
+@keyframes hp{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.bt{width:100%;padding:.82rem;margin-top:.35rem;border:none;border-radius:11px;background:var(--gr);color:#fff;font-family:var(--fb);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .3s}
+.bt:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 14px var(--accentG)}
+.bt:active:not(:disabled){transform:translateY(0)}
+.bt:disabled{opacity:.3;cursor:not-allowed}
+.skip-link{display:none;text-align:center;margin-top:.5rem}
+.skip-link a{font-size:.68rem;color:var(--accent);cursor:pointer;text-decoration:none;font-weight:500;transition:opacity .2s}
+.skip-link a:hover{opacity:.7}
+.skip-link.show{display:block}
+.skip-link.hide{display:none!important}
+.err-msg{text-align:center;font-size:.7rem;color:var(--partner);margin-top:.4rem;animation:fd .3s;font-weight:400}
+
+.steps{margin-top:1rem}
+.st{background:var(--card);border-radius:14px;padding:1.1rem;margin-bottom:.55rem;box-shadow:0 2px 8px var(--sh);border:1px solid var(--brd);animation:si .4s ease-out both;transition:background .4s}
+@keyframes si{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.shd{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.12rem}
+.sico{width:26px;height:26px;border-radius:7px;background:var(--accentS);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.sn{font-family:var(--fh);font-size:1.2rem;color:var(--ink);line-height:1.2}
+.se{font-size:.68rem;color:var(--ink3);font-weight:300;margin:.04rem 0 .55rem 2.1rem;line-height:1.4}
+.cps{display:flex;flex-wrap:wrap;gap:.22rem;justify-content:center;margin:.3rem 0}
+.cp{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;font-size:.75rem;font-weight:600;text-transform:uppercase;transition:all .4s;font-family:var(--fb)}
+.cp.c1{background:var(--accentS);color:var(--accent)}.cp.c2{background:var(--partnerS);color:var(--partner)}
+.cp.x{background:var(--bg2);color:var(--ink3);text-decoration:line-through;opacity:.28;transform:scale(.84)}
+.cp.ok{background:var(--accent);color:#fff;animation:pp .3s ease-out both}
+@keyframes pp{from{transform:scale(0)}50%{transform:scale(1.1)}to{transform:scale(1)}}
+.pls{font-size:.48rem;font-weight:700;color:var(--ink3);opacity:.3;display:flex;align-items:center}
+.cb{text-align:center;padding:.55rem;background:var(--bg);border-radius:10px;margin-top:.4rem;border:1.5px dashed var(--brd)}
+.cn{font-family:var(--fd);font-size:1.9rem;font-weight:800;color:var(--accent);line-height:1}
+.ct{font-size:.6rem;color:var(--ink3);margin-top:.08rem}
+.fr{display:flex;justify-content:center;gap:.28rem;margin:.5rem 0}
+.fi2{display:flex;flex-direction:column;align-items:center;padding:.45rem .32rem;border-radius:9px;background:var(--bg);min-width:42px;transition:all .5s;border:1.5px solid transparent}
+.fi2.dead{opacity:.1;transform:scale(.72)}
+.fi2.win{background:var(--gr);transform:scale(1.1);box-shadow:0 3px 14px var(--accentG);border-color:transparent}
+.fi2 .fc{font-family:var(--fd);font-size:1.2rem;font-weight:800;color:var(--ink);line-height:1;transition:color .3s}
+.fi2 .fw{font-size:.36rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--ink3);margin-top:.08rem;transition:color .3s}
+.fi2.win .fc{color:#fff}.fi2.win .fw{color:rgba(255,255,255,.7)}
+.eln{font-size:.63rem;color:var(--ink3);text-align:center;padding:.12rem 0;animation:fin .3s;line-height:1.4;font-weight:300}
+.eln strong{color:var(--accent);font-weight:600}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+
+.res{background:var(--card);border-radius:18px;padding:1.8rem 1.4rem 1.4rem;text-align:center;box-shadow:0 5px 24px var(--sh);border:1px solid var(--brd);animation:rp .6s ease-out both;position:relative;overflow:hidden}
+@keyframes rp{from{opacity:0;transform:translateY(14px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+.res::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--partner),var(--ok),var(--accent));background-size:300% 100%;animation:rs 4s linear infinite}
+@keyframes rs{0%{background-position:300% 0}100%{background-position:-300% 0}}
+.re{font-size:2.6rem;margin-bottom:.1rem;animation:eb .5s ease-out .1s both}
+@keyframes eb{from{transform:scale(0) rotate(-5deg)}50%{transform:scale(1.12) rotate(2deg)}to{transform:scale(1) rotate(0)}}
+.rw{font-family:var(--fh);font-size:2.2rem;color:var(--accent);line-height:1;margin-bottom:.08rem}
+.rn{font-family:var(--fd);font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.45rem}
+.reading{background:var(--bg);border-radius:11px;padding:.8rem .95rem;margin:0 auto .9rem;max-width:360px;text-align:left;border-left:3px solid var(--accent)}
+.reading p{font-size:.77rem;color:var(--ink2);font-weight:300;line-height:1.6;margin-bottom:.35rem}
+.reading p:last-child{margin-bottom:0}
+.reading .hl{color:var(--accent);font-weight:500}
+.ca{margin-bottom:.7rem}
+.cbtn{padding:.45rem 1.1rem;border:1.5px solid var(--brd);border-radius:50px;background:transparent;font-family:var(--fb);font-size:.68rem;font-weight:500;color:var(--ink2);cursor:pointer;transition:all .25s}
+.cbtn:hover{border-color:var(--accent);color:var(--accent)}
+.cbtn.done{background:var(--accentS);border-color:var(--accent);color:var(--accent)}
+.br{display:inline-flex;align-items:center;gap:.2rem;padding:.48rem 1rem;border:2px solid var(--brd);border-radius:50px;background:transparent;color:var(--ink3);font-family:var(--fb);font-size:.7rem;font-weight:500;cursor:pointer;transition:all .3s}
+.br:hover{border-color:var(--accent);color:var(--accent)}
+.foot{text-align:center;margin-top:1.8rem;padding-top:.8rem;border-top:1px solid var(--brd)}
+.foot p{font-size:.6rem;color:var(--ink3);font-weight:300}
+.foot a{color:var(--accent);text-decoration:none}
+
+/* SEO content section */
+.seo-section{margin-top:2rem;padding:1.2rem;background:var(--card);border-radius:14px;border:1px solid var(--brd)}
+.seo-section h2{font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.seo-section p,.seo-section li{font-size:.72rem;color:var(--ink2);font-weight:300;line-height:1.6}
+.seo-section h3{font-family:var(--fd);font-size:.82rem;font-weight:600;color:var(--ink);margin:.6rem 0 .25rem}
+.seo-section ol{padding-left:1.2rem;margin-bottom:.5rem}
+.seo-section details{margin-top:.5rem}
+.seo-section summary{font-size:.75rem;font-weight:500;color:var(--ink);cursor:pointer;margin-bottom:.3rem}
+
+@media(max-width:480px){
+  .wrap{padding:.9rem .8rem 2.5rem}.hdr h1{font-size:2rem}.hdr h1 .sc{font-size:1.8rem}
+  .fi2{min-width:33px;padding:.32rem .22rem}.fi2 .fc{font-size:.95rem}
+  .rw{font-size:1.8rem}.tray{width:250px}.reading{padding:.65rem .8rem}
+  .cp{width:24px;height:24px;font-size:.7rem}
+}
+</style>
+</head>
+<body data-theme="noir" data-fonts="playful">
+
+<div class="bgd"><div class="bl"></div><div class="bl"></div></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="tov" id="tov" onclick="closeTray()"></div>
+<div class="tray" id="tray" role="dialog" aria-label="Customize appearance">
+  <button class="tcl" onclick="closeTray()" aria-label="Close settings">✕</button>
+  <h3>Customize</h3>
+  <div class="ts"><div class="tl">Color Theme</div>
+    <div class="tg">
+      <div class="tc on" data-t="noir" onclick="setT('noir')" role="button" aria-label="Noir and Gold theme"><div class="tcs" style="background:linear-gradient(135deg,#141414 40%,#d4a853)"></div><div class="tcn">Noir & Gold</div></div>
+      <div class="tc" data-t="rose" onclick="setT('rose')" role="button" aria-label="Rose Garden theme"><div class="tcs" style="background:linear-gradient(135deg,#fdf6f0 40%,#e8446d)"></div><div class="tcn">Rose Garden</div></div>
+      <div class="tc" data-t="peach" onclick="setT('peach')" role="button" aria-label="Peach Dream theme"><div class="tcs" style="background:linear-gradient(135deg,#fff5f0 40%,#e07a5f)"></div><div class="tcn">Peach Dream</div></div>
+      <div class="tc" data-t="midnight" onclick="setT('midnight')" role="button" aria-label="Midnight theme"><div class="tcs" style="background:linear-gradient(135deg,#0f0e17 40%,#ff6b8a)"></div><div class="tcn">Midnight</div></div>
+    </div>
+  </div>
+  <div class="ts"><div class="tl">Font Style</div>
+    <div class="fg">
+      <button class="fp on" data-f="playful" onclick="setF('playful')">Playful</button>
+      <button class="fp" data-f="modern" onclick="setF('modern')">Modern</button>
+      <button class="fp" data-f="elegant" onclick="setF('elegant')">Elegant</button>
+      <button class="fp" data-f="retro" onclick="setF('retro')">Retro</button>
+    </div>
+  </div>
+</div>
+
+<div class="tb">
+  <div class="tb-brand"><span>♥</span> FLAMES</div>
+  <div class="tb-r">
+    <button class="ib on" id="sBtn" onclick="togS()" aria-label="Toggle sound effects">🔊</button>
+    <button class="ib" onclick="openTray()" aria-label="Open customization panel">🎨</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hdr">
+    <h1>FLAMES <span class="sc">Calculator</span></h1>
+    <p>Type two names and watch the letters decide your destiny — step by step.</p>
+    <a class="wl" id="wlBtn" onclick="togLegend()" role="button" aria-expanded="false">What is FLAMES? ↓</a>
+    <div class="lb" id="lgb" aria-hidden="true">
+      <div class="lr"><span class="ll">F</span><span class="lw">Friends — built on trust and laughter</span></div>
+      <div class="lr"><span class="ll">L</span><span class="lw">Lovers — sparks and deep chemistry</span></div>
+      <div class="lr"><span class="ll">A</span><span class="lw">Affection — warm, gentle connection</span></div>
+      <div class="lr"><span class="ll">M</span><span class="lw">Marriage — lasting, deep commitment</span></div>
+      <div class="lr"><span class="ll">E</span><span class="lw">Tension — passionate, electric energy</span></div>
+      <div class="lr"><span class="ll">S</span><span class="lw">BFFs — unbreakable platonic bond</span></div>
+    </div>
+  </header>
+
+  <div class="inp">
+    <div class="cd">
+      <div style="margin-bottom:.7rem">
+        <label class="fl" for="n1">You</label>
+        <input type="text" id="n1" class="fi" placeholder="Your name" autocomplete="off" maxlength="30">
+      </div>
+      <div class="dh" aria-hidden="true">♥</div>
+      <div>
+        <label class="fl" for="n2">The one on your mind</label>
+        <input type="text" id="n2" class="fi" placeholder="Their name" autocomplete="off" maxlength="30">
+      </div>
+      <button class="bt" id="goBtn" onclick="go(false)">Reveal Your Fate ✨</button>
+      <div class="skip-link" id="skipLink"><a onclick="go(true)" role="button">⚡ Skip to result</a></div>
+    </div>
+  </div>
+
+  <div class="steps" id="steps" aria-live="polite"></div>
+
+  <!-- SEO content — collapsed by default, gives crawlers content to index -->
+  <section class="seo-section">
+    <details>
+      <summary>How to Play FLAMES</summary>
+      <p>FLAMES is a classic pen-and-paper love game that's been played by kids and teenagers for decades. The name stands for Friends, Lovers, Affection, Marriage, Enemies (Tension), and Siblings (BFFs).</p>
+      <h3>The Rules</h3>
+      <ol>
+        <li>Write out both names and remove all common letters from each</li>
+        <li>Count the total remaining letters — this is your magic number</li>
+        <li>Use that number to count through F-L-A-M-E-S, eliminating one letter each round</li>
+        <li>The last letter standing reveals your relationship destiny</li>
+      </ol>
+      <details>
+        <summary>Frequently Asked Questions</summary>
+        <p><strong>Is FLAMES accurate?</strong> FLAMES is a fun game for entertainment — it uses a simple letter-counting algorithm and isn't based on any science. Enjoy it for what it is!</p>
+        <p><strong>Can I play with any names?</strong> Yes! Try it with friends, crushes, celebrities, fictional characters — anyone you're curious about.</p>
+        <p><strong>Why did I get Tension?</strong> Tension (the E in FLAMES) means there's electric, passionate energy between the two names. Many great love stories start with a little tension!</p>
+      </details>
+    </details>
+  </section>
+
+  <div class="foot">
+    <p>Made with ♥ for fun — the universe has its own plans!</p>
+  </div>
+</div>
+
+<script>
+/* ═══ UTILS ═══ */
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function pk(a){return a[~~(Math.random()*a.length)]}
+function sl(ms){return new Promise(r=>setTimeout(r,ms))}
+function cl(n){return n.toLowerCase().replace(/[^a-z]/g,'')}
+
+/* ═══ TRAY ═══ */
+function openTray(){document.getElementById('tray').classList.add('open');document.getElementById('tov').classList.add('open');document.getElementById('tray').querySelector('.tcl').focus()}
+function closeTray(){document.getElementById('tray').classList.remove('open');document.getElementById('tov').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeTray()}});
+
+/* ═══ LEGEND TOGGLE ═══ */
+function togLegend(){
+  const lb=document.getElementById('lgb'),btn=document.getElementById('wlBtn');
+  const open=lb.classList.toggle('show');
+  btn.textContent=open?'What is FLAMES? ↑':'What is FLAMES? ↓';
+  btn.setAttribute('aria-expanded',open);
+  lb.setAttribute('aria-hidden',!open);
+}
+
+/* ═══ PREFERENCES (persisted) ═══ */
+const savedTheme=localStorage.getItem('fl_theme');
+const savedFont=localStorage.getItem('fl_font');
+if(savedTheme)document.body.dataset.theme=savedTheme;
+if(savedFont)document.body.dataset.fonts=savedFont;
+
+function setT(t){
+  document.body.dataset.theme=t;
+  document.querySelectorAll('.tc').forEach(c=>c.classList.toggle('on',c.dataset.t===t));
+  localStorage.setItem('fl_theme',t);
+}
+function setF(f){
+  document.body.dataset.fonts=f;
+  document.querySelectorAll('.fp').forEach(p=>p.classList.toggle('on',p.dataset.f===f));
+  localStorage.setItem('fl_font',f);
+  loadFontsFor(f);
+}
+
+// Init active states from saved prefs
+document.querySelectorAll('.tc').forEach(c=>c.classList.toggle('on',c.dataset.t===document.body.dataset.theme));
+document.querySelectorAll('.fp').forEach(p=>p.classList.toggle('on',p.dataset.f===document.body.dataset.fonts));
+
+/* Lazy font loading */
+const fontURLs={
+  modern:'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;700;800&family=Caveat:wght@400;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap',
+  elegant:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Satisfy&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap',
+  retro:'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Caveat:wght@400;600;700&display=swap'
+};
+const loadedFonts=new Set(['playful']);
+function loadFontsFor(f){
+  if(loadedFonts.has(f)||!fontURLs[f])return;
+  const link=document.createElement('link');link.rel='stylesheet';link.href=fontURLs[f];
+  document.head.appendChild(link);loadedFonts.add(f);
+}
+// Load saved font if not default
+if(savedFont&&savedFont!=='playful')loadFontsFor(savedFont);
+
+/* ═══ AUDIO ═══ */
+let ax=null,sOn=true;
+function iA(){if(!ax)ax=new(window.AudioContext||window.webkitAudioContext)()}
+function tn(f,d,t='sine',v=.06){if(!sOn)return;try{iA();const o=ax.createOscillator(),g=ax.createGain();o.type=t;o.frequency.setValueAtTime(f,ax.currentTime);g.gain.setValueAtTime(v,ax.currentTime);g.gain.exponentialRampToValueAtTime(.001,ax.currentTime+d);o.connect(g);g.connect(ax.destination);o.start();o.stop(ax.currentTime+d)}catch(e){}}
+function sfxS(){tn(620,.09,'sine',.04)}
+function sfxE(){tn(250,.12,'triangle',.05)}
+function sfxW(){tn(523,.13,'sine',.06);setTimeout(()=>tn(659,.13,'sine',.06),85);setTimeout(()=>tn(784,.2,'sine',.06),170)}
+function sfxSoft(){tn(400,.2,'sine',.04);setTimeout(()=>tn(480,.2,'sine',.04),120)}
+function togS(){sOn=!sOn;const b=document.getElementById('sBtn');b.textContent=sOn?'🔊':'🔇';b.classList.toggle('on',sOn)}
+
+/* ═══ CONFETTI (lazy canvas) ═══ */
+let cP=[],cR=false;
+function rC(){const cv=document.getElementById('confetti');cv.width=innerWidth;cv.height=innerHeight}
+addEventListener('resize',rC);
+addEventListener('orientationchange',()=>setTimeout(rC,100));
+
+function celebrate(type){
+  const cv=document.getElementById('confetti');cv.style.display='block';rC();
+  const cx=cv.getContext('2d');cP=[];
+  const accent=getComputedStyle(document.body).getPropertyValue('--accent').trim();
+  const partner=getComputedStyle(document.body).getPropertyValue('--partner').trim();
+  const ok=getComputedStyle(document.body).getPropertyValue('--ok').trim();
+  let colors,count,speed;
+  if(type==='big'){colors=[accent,partner,ok,'#ffd166','#ff6b8a','#6bffb8'];count=100;speed=1}
+  else if(type==='warm'){colors=[accent,partner,'#ffd6b0'];count=55;speed=.7}
+  else{colors=[accent,partner];count=30;speed=.45}
+  for(let i=0;i<count;i++)cP.push({x:Math.random()*cv.width,y:-6-Math.random()*cv.height*.3,w:2+Math.random()*4*speed,h:4+Math.random()*7*speed,color:colors[~~(Math.random()*colors.length)],vx:(Math.random()-.5)*3*speed,vy:(1.5+Math.random()*3)*speed,rot:Math.random()*360,rv:(Math.random()-.5)*6,life:1});
+  if(!cR){cR=true;aC(cx,cv)}
+}
+function aC(cx,cv){
+  cx.clearRect(0,0,cv.width,cv.height);let a=0;
+  cP.forEach(p=>{if(p.life<=0)return;p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.rot+=p.rv;p.life-=.005;if(p.life<=0)return;a++;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot*Math.PI/180);cx.globalAlpha=Math.min(p.life*2,1);cx.fillStyle=p.color;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()});
+  if(a>0)requestAnimationFrame(()=>aC(cx,cv));else{cR=false;cx.clearRect(0,0,cv.width,cv.height);cv.style.display='none'}
+}
+
+/* ═══ PLAY COUNTER ═══ */
+let plays=parseInt(localStorage.getItem('fl_p')||'0');
+function upP(){plays++;localStorage.setItem('fl_p',plays);if(plays>=1)document.getElementById('skipLink').classList.add('show')}
+if(plays>=1)document.getElementById('skipLink').classList.add('show');
+
+/* ═══ DATA ═══ */
+const FD={F:{word:'Friends',emoji:'🤝',celeb:'warm'},L:{word:'Lovers',emoji:'💕',celeb:'big'},A:{word:'Affection',emoji:'🥰',celeb:'warm'},M:{word:'Marriage',emoji:'💍',celeb:'big'},E:{word:'Tension',emoji:'⚡',celeb:'subtle'},S:{word:'BFFs',emoji:'👫',celeb:'subtle'}};
+const FN={F:'Friends',L:'Lovers',A:'Affection',M:'Marriage',E:'Tension',S:'BFFs'};
+const SITE_URL='https://flames.football-panda.workers.dev';
+
+/* ═══ NARRATION ═══ */
+const N={
+  s1:["Alright, let's lay out the letters!","First things first — spelling it out...","Here come the letters!","Time to see what we're working with!","Let's unpack these names...","Placing the letters on the table...","Two names. Let's see what they're made of.","The letters are ready for their moment..."],
+  s1b:["Every great love story starts with a name.","Each letter carries a tiny piece of destiny.","Two names enter. One truth comes out.","Names hold more power than you think.","The building blocks of whatever comes next.","Simple letters. Big consequences."],
+  s2:["Crossing out the twins!","Time to play matchmaker...","Some letters are living double lives!","Let's catch the double agents...","Hunting for shared letters...","Who's got a twin?","Letters pulling double duty...","The elimination round begins!"],
+  s2b:["If a letter appears in both names, both copies cancel out.","Shared letters neutralize each other. Only the unique ones survive.","Common letters = cancelled. We keep what's special.","Same letter in both names? Neither makes it through."],
+  s3:["Counting the survivors...","These tough letters made it through!","The survivors assemble!","And the ones still standing...","Here's who remains!","The remaining letters step forward...","These are the chosen few!","Tallying up what's left..."],
+  s3b:["This total is the magic number — the key to everything.","Add them up! This number decides your fate.","The remaining count cycles through FLAMES.","This number eliminates FLAMES letters one by one."],
+  s4:["The grand finale!","Drumroll please...","Buckle up, here comes the countdown!","This is where destiny decides...","The moment of truth!","The final countdown begins...","One by one, they fall...","Last letter standing wins!"],
+  s4b:["Counting through FLAMES with our magic number. Last one standing wins.","Starting from F, we count, knock one out, repeat until one remains.","Round by round, FLAMES shrinks — one letter will stand victorious.","Each round: count, eliminate, repeat. The survivor is your destiny."]
+};
+
+/* ═══ PERSONALIZED READING ═══ */
+function genR(ltr,n1,n2,mag,rnds){
+  const s1=n1.length<=4,bs=s1&&n2.length<=4,bl=n1.length>6&&n2.length>6,qk=rnds<=3,lng=rnds>=5;
+  const en1=esc(n1),en2=esc(n2);
+  const meta=plays>4?pk([`Back again, ${en1}? The letters don't judge. `,`Another reading? Someone's clearly on your mind. `,`The letters remember you. Let's see what they say. `]):'';
+  const P={
+    F:{o:[`${en1}, the letters say <span class="hl">friendship</span> is the foundation between you and ${en2}.`,`${en1} & ${en2}: the universe sees you as the ultimate friend duo.`,`The verdict — you and ${en2} are written in the stars as <span class="hl">friends</span>.`,`The FLAMES don't lie. What you and ${en2} have is a <span class="hl">real friend</span> connection.`],m:[`Magic number ${mag}, ${rnds} rounds to settle — like a friendship that doesn't rush.`,qk?`Only ${rnds} rounds. The universe knew instantly.`:`${rnds} careful rounds. Real friendships aren't instant — they're earned.`,bs?`Short names, deep bond.`:bl?`All those letters? That's a lot of inside jokes waiting to happen.`:`${mag} unique letters of connection.`],c:[`Don't underestimate this. The best love stories start as friendships. 👀`,`You might already have something rarer than a soulmate — a real friend.`,`The kind of bond where comfortable silence is the best conversation.`,`This is the foundation everything else gets built on.`]},
+    L:{o:[`${en1}... the letters <span class="hl">blushed</span> landing on Lovers for you and ${en2}.`,`${en1} & ${en2} — the universe says <span class="hl">Lovers</span>. Not subtle.`,`The letters chose the most romantic answer, ${en1}. 🔥`,`Your connection with ${en2} just set the algorithm on fire.`],m:[`Magic number ${mag} — ${mag>6?"high energy matching the intensity":"small but mighty, love doesn't need to shout"}.`,qk?`Only ${rnds} rounds. When it's right, the universe doesn't hesitate.`:`${rnds} rounds. The best things build.`,bl?`A LOT of letters. Love still won.`:bs?`Short names, big chemistry.`:`Every letter counted — and here you are.`],c:[`The letters see what you probably already feel.`,`Chemistry that makes movies jealous.`,`Whether secret crush or old flame... the fire is real, ${en1}.`,`That can't-stop-smiling feeling, in letter form.`]},
+    A:{o:[`${en1}, the result is <span class="hl">Affection</span>. A warmth between you and ${en2} that can't be faked.`,`Your bond with ${en2} radiates <span class="hl">genuine affection</span>.`,`The FLAMES whispered something beautiful about you two.`,`The gentle, "I feel safe around you" connection.`],m:[`Magic number ${mag}, ${rnds} rounds — Affection held its ground. Quiet but unshakeable.`,`Through ${rnds} rounds, the loud ones fell. Affection stayed.`,qk?`Settled in ${rnds} rounds. Affection knows what it is.`:`${rnds} rounds of patience. Just like real affection.`,`${mag} letters of pure tenderness.`],c:[`The softest glow is the one that lasts forever.`,`The forehead kiss, the "text me when you get home."`,`The universe gave you the warmest possible result, ${en1}.`,`The kind of warmth that makes a cold world bearable.`]},
+    M:{o:[`${en1}... the letters spelled <span class="hl">Marriage</span> for you and ${en2}. Not my rules.`,`MARRIAGE! The universe isn't being subtle with you two.`,`The biggest result just landed, ${en1}. 💍`,`${rnds} rounds and the last letter says <span class="hl">Marriage</span>.`],m:[`Magic number ${mag}. ${mag>5?"Strong foundation — built to last.":"Small number, massive destiny."}`,lng?`${rnds} whole rounds. The universe chose carefully.`:qk?`Only ${rnds} rounds. Absolutely sure.`:`${rnds} rounds. Destiny doesn't rush for just anyone.`,bs?`Two short names, one enormous destiny.`:bl?`So many letters — the universe processed every one.`:`${mag} letters all pointing the same way.`],c:[`Screenshot this. You'll want the receipts someday.`,`The stars aligned and destiny said what it said.`,`Maybe bookmark this page. Just in case. 😏`,`Of every outcome, you got THE one, ${en1}.`]},
+    E:{o:[`Interesting. ${en1}, your result with ${en2} is <span class="hl">Tension</span> — the most exciting one.`,`<span class="hl">Tension</span>! More intriguing than you think.`,`Electric. That's what's between you and ${en2}. ⚡`,`The letters detected <span class="hl">magnetic tension</span> between you two.`],m:[`Magic number ${mag} led here — the best stories involve friction.`,`${rnds} rounds, and this survived them all. So will whatever's between you.`,qk?`Settled fast — the energy was impossible to miss.`:`${rnds} rounds of buildup. Every great story needs tension.`,`${mag} unmatched letters. A lot of unique energy — hence the electricity.`],c:[`Tension is just passion that hasn't found its direction yet.`,`Pride and Prejudice, 10 Things I Hate About You — they all started here.`,`The opposite of love isn't tension. It's indifference.`,`The "can't stop thinking about them" energy. Embrace it, ${en1}.`]},
+    S:{o:[`${en1}, you and ${en2} are <span class="hl">BFFs</span>. The deep, chosen-family kind.`,`BFFs! A bond deeper than romance.`,`The "take a bullet but also steal your fries" connection.`,`The most ride-or-die result possible for you two.`],m:[`Magic number ${mag} landed here — BFF bonds are the most unbreakable.`,`${rnds} rounds, and this refused to go. Like a best friend who won't leave.`,bs?`Short names, powerful connection.`:bl?`So many letters — a novel of inside jokes.`:`${mag} letters of pure loyalty.`,qk?`Only ${rnds} rounds. The universe saw it immediately.`:`${rnds} rounds — tested and held.`],c:[`The one who'll roast you publicly and champion you privately.`,`Not every meaningful connection is romantic. Some are deeper.`,`Never bored, never alone, never out of things to laugh about.`,`Nothing is bigger than "best friend." Nothing.`]}
+  };
+  const p=P[ltr];return`<p>${meta}${pk(p.o)}</p><p>${pk(p.m)}</p><p>${pk(p.c)}</p>`;
+}
+
+/* ═══ DOM HELPERS ═══ */
+function addS(h){return new Promise(r=>{const e=document.createElement('div');e.className='st';e.innerHTML=h;document.getElementById('steps').appendChild(e);setTimeout(()=>{e.scrollIntoView({behavior:'smooth',block:'center'});r(e)},35)})}
+
+/* Clear error on input */
+document.getElementById('n1').addEventListener('input',function(){this.classList.remove('err')});
+document.getElementById('n2').addEventListener('input',function(){this.classList.remove('err')});
+
+/* ═══ GAME ═══ */
+let running=false;
+
+async function go(skip){
+  if(running)return;
+  const n1El=document.getElementById('n1'),n2El=document.getElementById('n2');
+  const r1=n1El.value.trim(),r2=n2El.value.trim();
+
+  // Validation
+  if(!r1||!r2){if(!r1)n1El.classList.add('err');if(!r2)n2El.classList.add('err');return}
+  const s1=cl(r1),s2=cl(r2);
+  if(!s1||!s2){
+    const area=document.getElementById('steps');area.innerHTML='<div class="err-msg">Please enter names with at least one letter (A-Z) each.</div>';return}
+
+  // Check identical names
+  if(s1===s2){
+    const area=document.getElementById('steps');area.innerHTML='<div class="err-msg">Both names are identical — the letters need some differences to work with! Try a different pair.</div>';return}
+
+  running=true;
+  const btn=document.getElementById('goBtn');btn.disabled=true;btn.textContent='Reading the stars...';
+  document.getElementById('steps').innerHTML='';
+  document.getElementById('skipLink').classList.add('hide');
+
+  // Safe escaped names for display
+  const en1=esc(r1),en2=esc(r2);
+
+  // Compute
+  let a1=s1.split(''),a2=s2.split(''),m1=Array(a1.length).fill(false),m2=Array(a2.length).fill(false);
+  for(let i=0;i<a1.length;i++)for(let j=0;j<a2.length;j++)if(!m1[i]&&!m2[j]&&a1[i]===a2[j]){m1[i]=true;m2[j]=true;break}
+  const mc=m1.filter(Boolean).length;
+  const rem1=a1.filter((_,i)=>!m1[i]),rem2=a2.filter((_,i)=>!m2[i]),total=rem1.length+rem2.length;
+
+  if(total===0){
+    document.getElementById('steps').innerHTML='<div class="err-msg">All letters cancelled out! The magic number is 0 — the game needs at least 1 remaining letter. Try different names!</div>';
+    running=false;btn.disabled=false;btn.textContent='Reveal Your Fate ✨';document.getElementById('skipLink').classList.remove('hide');return}
+
+  let fl=['F','L','A','M','E','S'],elims=[],curr=[...fl],pos=0;
+  while(curr.length>1){pos=(pos+total-1)%curr.length;elims.push(curr.splice(pos,1)[0]);if(pos>=curr.length)pos=0}
+  const winner=curr[0],rnds=elims.length;
+
+  if(!skip){
+    sfxS();
+    await addS(`<div class="shd"><div class="sico">✏️</div><div class="sn">${pk(N.s1)}</div></div><div class="se">${pk(N.s1b)}</div>
+      <div style="text-align:center;margin-bottom:.3rem"><div style="font-size:.53rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:.18rem">${en1}</div><div class="cps">${a1.map(l=>`<span class="cp c1">${esc(l)}</span>`).join('')}</div></div>
+      <div style="text-align:center"><div style="font-size:.53rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--partner);margin-bottom:.18rem">${en2}</div><div class="cps">${a2.map(l=>`<span class="cp c2">${esc(l)}</span>`).join('')}</div></div>`);
+    await sl(900);
+    sfxS();
+    await addS(`<div class="shd"><div class="sico">🔍</div><div class="sn">${pk(N.s2)}</div></div><div class="se">${pk(N.s2b)}</div>
+      <div style="text-align:center;margin-bottom:.25rem"><div class="cps">${a1.map((l,i)=>`<span class="cp ${m1[i]?'x':'c1'}">${esc(l)}</span>`).join('')}</div></div>
+      <div style="text-align:center"><div class="cps">${a2.map((l,i)=>`<span class="cp ${m2[i]?'x':'c2'}">${esc(l)}</span>`).join('')}</div></div>
+      <div style="text-align:center;margin-top:.35rem;font-size:.65rem;color:var(--ink3)">${mc>0?`💥 ${mc} letter${mc>1?'s':''} cancelled!`:'✨ Zero matches — all unique!'}</div>`);
+    await sl(900);
+    sfxS();
+    await addS(`<div class="shd"><div class="sico">🔢</div><div class="sn">${pk(N.s3)}</div></div><div class="se">${pk(N.s3b)}</div>
+      <div style="text-align:center"><div class="cps">${rem1.map(l=>`<span class="cp ok">${esc(l)}</span>`).join('')}<span class="pls">+</span>${rem2.map(l=>`<span class="cp ok">${esc(l)}</span>`).join('')}</div></div>
+      <div class="cb"><div class="cn">${total}</div><div class="ct">our magic number ✨</div></div>`);
+    await sl(950);
+  }
+
+  sfxS();
+  const s4=await addS(`<div class="shd"><div class="sico">🔥</div><div class="sn">${skip?'Straight to the elimination!':pk(N.s4)}</div></div><div class="se">${pk(N.s4b)}</div>
+    <div class="fr" id="flR">${fl.map(f=>`<div class="fi2" id="f-${f}"><span class="fc">${f}</span><span class="fw">${FN[f]}</span></div>`).join('')}</div><div id="elo"></div>`);
+  await sl(skip?250:450);
+
+  for(let i=0;i<elims.length;i++){
+    await sl(skip?300:600);sfxE();
+    s4.querySelector(`#f-${elims[i]}`).classList.add('dead');
+    const lg=document.createElement('div');lg.className='eln';lg.innerHTML=`Round ${i+1} → <strong>${elims[i]}</strong> (${FN[elims[i]]}) eliminated`;
+    s4.querySelector('#elo').appendChild(lg);s4.querySelector('#elo').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  await sl(250);
+  const d=FD[winner];
+  if(d.celeb==='big'){sfxW();celebrate('big')}
+  else if(d.celeb==='warm'){sfxW();celebrate('warm')}
+  else{sfxSoft();celebrate('subtle')}
+  s4.querySelector(`#f-${winner}`).classList.add('win');
+  await sl(750);
+
+  const reading=genR(winner,r1,r2,total,rnds);
+  const res=document.createElement('div');res.className='res';res.tabIndex=-1;
+  res.innerHTML=`
+    <div class="re">${d.emoji}</div>
+    <div class="rw">${d.word}</div>
+    <div class="rn">${en1} & ${en2}</div>
+    <div class="reading">${reading}</div>
+    <div class="ca" style="display:flex;gap:.3rem;justify-content:center;flex-wrap:wrap">
+      <button class="cbtn" id="cardBtn" aria-label="Create shareable card" style="background:var(--accentS);border-color:var(--accent);color:var(--accent)">📸 Create card</button>
+      <button class="cbtn" id="cpBtn" aria-label="Copy result to clipboard">📋 Copy text</button>
+    </div>
+    <button class="br" id="resetBtn" aria-label="Play again with new names">↻ Try another pair</button>`;
+  document.getElementById('steps').appendChild(res);
+  res.scrollIntoView({behavior:'smooth',block:'center'});
+  res.focus();
+
+  // Attach events properly (no inline onclick with user data)
+  document.getElementById('cpBtn').addEventListener('click',()=>cpR(r1,r2,d.word,d.emoji));
+  document.getElementById('cardBtn').addEventListener('click',()=>{
+    const params=new URLSearchParams({n1:r1,n2:r2,r:winner});
+    window.open('card.html?'+params.toString(),'_blank');
+  });
+  document.getElementById('resetBtn').addEventListener('click',reset);
+
+  upP();
+  running=false;btn.disabled=false;btn.textContent='Reveal Your Fate ✨';
+  document.getElementById('skipLink').classList.remove('hide');
+}
+
+function reset(){
+  document.getElementById('steps').innerHTML='';
+  document.getElementById('n1').value='';document.getElementById('n2').value='';
+  document.getElementById('n1').focus();
+  scrollTo({top:0,behavior:'smooth'});
+}
+
+function cpR(a,b,w,e){
+  const txt=`${e} ${a} & ${b} = ${w}!\n\nI just played the FLAMES love game — try it yourself!\n${SITE_URL}`;
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(()=>showCopied()).catch(()=>fallbackCopy(txt));
+  }else{fallbackCopy(txt)}
+}
+function fallbackCopy(txt){
+  const ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;opacity:0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');showCopied()}catch(e){}
+  document.body.removeChild(ta);
+}
+function showCopied(){
+  const btn=document.getElementById('cpBtn');if(!btn)return;
+  btn.textContent='✓ Copied! Now paste it anywhere';btn.classList.add('done');
+  setTimeout(()=>{if(btn){btn.textContent='📋 Copy result & share with friends';btn.classList.remove('done')}},3000);
+}
+
+document.getElementById('n1').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('n2').focus()});
+document.getElementById('n2').addEventListener('keydown',e=>{if(e.key==='Enter')go(false)});
+</script>
+</body>
+</html>
